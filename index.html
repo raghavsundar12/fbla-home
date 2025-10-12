@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wheeler High School FBLA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.site-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.site-header {
+  width: 100%;
+  height: 500px; /* set your desired header height */
+  overflow: hidden;
+  position: relative;
+}
+
+.header-image {
+  height: 100%;
+  width: auto; /* maintain aspect ratio */
+  max-height: 500px; /* optional: limit header height */
+  object-fit: cover; /* ensures the image covers container without distortion */
+}
+
+/* --- ABOUT SECTION --- */
+.about-section {
+  width: 100%;
+  height: 400px;
+  background: url('IMG_9671.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 31, 63, 0.6);
+}
+
+.about-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.about-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.about-content h1::after {
+  background-color: #ffffff;
+}
+
+/* --- CALENDAR --- */
+.calendar-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.calendar-container iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+  color: #081f3f;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #081f3f;
+  margin: 10px auto 25px;
+  border-radius: 2px;
+}
+
+/* --- LEADERS SECTION --- */
+.leaders-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+.officer {
+  text-align: center;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.officer-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #133f7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.officer-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.officer-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(8, 31, 63, 0.3);
+}
+
+.expanded .officer-circle:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.officer-name {
+  font-weight: 700;
+  color: #081f3f;
+  font-size: 1.1rem;
+}
+
+.officer-role {
+  font-weight: 500;
+  color: #133f7d;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.officer-desc {
+  display: none;
+  font-size: 0.95rem;
+  color: #081f3f;
+  line-height: 1.4;
+  margin-top: 5px;
+}
+
+.officer-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expanded .leaders-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.expanded .officer {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: calc(50% - 30px);
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.expanded .officer-circle {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.expanded .officer-text {
+  flex: 1;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.expanded .officer-desc {
+  display: block;
+}
+
+/* Toggle button */
+#show-less {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#show-less a {
+  color: #081f3f;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  border: 2px solid #081f3f;
+  padding: 8px 14px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+#show-less a:hover {
+  background-color: #081f3f;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .officer-circle { width: 140px; height: 140px; }
+  .expanded .officer { width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .expanded .officer { flex-direction: column; align-items: center; }
+  .expanded .officer-text { align-items: center; text-align: center; }
+  .expanded .officer-circle { margin-bottom: 10px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ABOUT SECTION -->
+<section class="about-section">
+  <div class="about-content">
+    <h1>About Wheeler FBLA</h1>
+    <p>Wheeler High School’s FBLA (Future Business Leaders of America) is a student-led organization that empowers future leaders through business education, leadership development, and community involvement. From state competitions to community projects, our chapter is dedicated to helping students grow their professional skills and make lasting memories.</p>
+  </div>
+</section>
+
+<!-- CALENDAR SECTION -->
+<h1>Upcoming Events</h1>
+<div class="calendar-container">
+  <iframe src="https://calendar.google.com/calendar/embed?src=c099f3fd13818b9215c29fdb996c91bbff0bd035ae146addac1c46ef394c0b1f%40group.calendar.google.com&ctz=America%2FNew_York" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<!-- LEADERSHIP SECTION -->
+<h1>FBLA Leadership</h1>
+<div class="leaders-wrapper">
+  <div class="leaders-container" id="all-leaders">
+
+    <!-- Officers (same as your existing ones) -->
+    <div class="officer">
+<div class="officer-circle"><img src="Untitled design.png" alt="Officer 1"></div>
+<div class="officer-text">
+<div class="officer-name">Aditya Khanolkar</div>
+<div class="officer-role">President</div>
+<div class="officer-desc">Hey guys, my name's Aditya Khanolkar and I'm your 25-26 President. This will be my third year in FBLA, and I'm beyond excited to get to work with everybody. A bit about me—I love plane spotting, reading the business section in the news, and playing almost any racket sport. Looking forward to this upcoming year!</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (1).png" alt="Officer 2"></div>
+<div class="officer-text">
+<div class="officer-name">Davin Stuart</div>
+<div class="officer-role">Vice President</div>
+<div class="officer-desc">Hey! I’m Davin Stuart, and I’ll be your FBLA Vice President this year. I’m excited to help our chapter make an impact while keeping the energy high and the vibe positive. Outside of FBLA, I’m really into creative writing and motorcycles, and I’m also on the school track team. Can’t wait for what’s ahead!</div>
+</div>
+</div>
+
+
+	<div class="officer">
+<div class="officer-circle"><img src="Untitled design (2).png" alt="Officer 3"></div>
+<div class="officer-text">
+<div class="officer-name">Aaryan Indla</div>
+<div class="officer-role">Historian</div>
+<div class="officer-desc">Hey y'all, I'm Aaryan and am so excited to be Historian for the 25-26 school year! I joined FBLA last year and had so much fun in the Website Design event, even making it to 1st at States. I enjoy cooking, listening to music, and learning about graphic design/social media. I will be a senior this year but I cannot wait to continue being involved in FBLA and making it a memorable year for the chapter!</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (3).png" alt="Officer 4"></div>
+<div class="officer-text">
+<div class="officer-name">Anusha Singh</div>
+<div class="officer-role">Reporter</div>
+<div class="officer-desc">Hey, I’m Anusha and I’ll be Wheeler FBLA’s 2025-26 reporter! I love making videos, traveling, and reading. I’m excited to see, and record, this upcoming year!</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (4).png" alt="Officer 5"></div>
+<div class="officer-text">
+<div class="officer-name">Aarav Balaji</div>
+<div class="officer-role">Secretary</div>
+<div class="officer-desc">Hi, I’m Aarav and I am the secretary for Wheeler FBLA this year. I’m excited to grow our chapter and get to know everyone this year. I like listening to music and traveling.</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (5).png" alt="Officer 6"></div>
+<div class="officer-text">
+<div class="officer-name">Ella Ugwaudu</div>
+<div class="officer-role">Treasurer</div>
+<div class="officer-desc">Hey! My name is Ella Ugwuadu, and I’m the Treasurer for Wheeler FBLA this year. I’m so excited to carry out fundraisers, handle finances, and work with everyone! A few fun facts about me are that I enjoy playing my saxophone, running cross country, and hanging out with friends.</div>
+</div>
+</div>
+
+<!-- Support Leaders -->
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (6).png" alt="Support 1"></div>
+<div class="officer-text">
+<div class="officer-name">Elvira Anggraeni</div>
+<div class="officer-role">CE Director</div>
+<div class="officer-desc">Hey! I’m Elvira Anggraeni and I’ll be FBLA’s Community Engagement Director for the 25-26 chapter. I’m very excited to explore new competitive events this year and attend leadership conferences! I enjoy experimenting with graphic design, digital art, and listening to all kinds of music in my free time. Hope to make this a great year for FBLA!</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (7).png" alt="Support 2"></div>
+<div class="officer-text">
+<div class="officer-name">Ben Phan</div>
+<div class="officer-role">Fundraising Director</div>
+<div class="officer-desc">Salvete! My name is Ben and I'll be your fundraising director this year! I'm super excited to go to conferences and support everyone in FBLA. Outside of FBLA, I compose orchestra and jazz pieces, study classics, and collect antique books. Can't wait to work with everyone this year!</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="Untitled design (8).png" alt="Support 3"></div>
+<div class="officer-text">
+<div class="officer-name">Garvita Singh</div>
+<div class="officer-role">Programs Director</div>
+<div class="officer-desc">Hi! I’m Garvita, I’m a Junior, and I’ll be your programs director this year! I love meeting new people and everything FBLA - from competitions to our meetings. I’m so excited to grow our chapter and see all of the amazing success we’re going to have!</div>
+</div>
+</div>
+
+<div class="officer">
+<div class="officer-circle"><img src="betterofficer.png" alt="Support 4"></div>
+<div class="officer-text">
+<div class="officer-name">Raghav Sundar</div>
+<div class="officer-role">Technology Director</div>
+<div class="officer-desc">I’m Raghav Sundar, a junior here at Wheeler High School. I’m going to be the Technology Director at FBLA. I’ve been a part of this club for two years, and I’m excited to work with others and help our club grow!</div>
+</div>
+</div>
+    <!-- (Keep all your other officers exactly as before) -->
+
+  </div>
+
+  <div id="show-less">
+    <a href="#">View More About Officers ▼</a>
+  </div>
+</div>
+
+<script>
+const wrapper = document.querySelector('.leaders-wrapper');
+const allOfficers = document.querySelectorAll('.officer');
+const toggleLink = document.querySelector('#show-less a');
+
+function expand() {
+  wrapper.classList.add('expanded');
+  toggleLink.innerHTML = 'Hide Officer Details ▲';
+  window.scrollTo({top: wrapper.offsetTop, behavior:'smooth'});
+}
+
+function collapse() {
+  wrapper.classList.remove('expanded');
+  toggleLink.innerHTML = 'View More About Officers ▼';
+}
+
+allOfficers.forEach(off => {
+  off.addEventListener('click', () => {
+    if (!wrapper.classList.contains('expanded')) expand();
+  });
+});
+
+toggleLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (wrapper.classList.contains('expanded')) collapse();
+  else expand();
+});
+</script>
+
+</body>
+</html>
