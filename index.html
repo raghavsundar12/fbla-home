@@ -215,6 +215,77 @@ h1::after {
   margin-bottom: 0;
 }
 
+/* --- TEACHER SPONSORS SECTION --- */
+
+.sponsors-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 20px auto 60px;
+}
+
+.sponsor-card {
+  text-align: center;
+}
+
+.sponsor-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #133f7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sponsor-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sponsor-circle:hover {
+  transform: none;
+  box-shadow: 0 6px 18px rgba(8, 31, 63, 0.3);
+}
+
+.sponsor-name {
+  font-weight: 700;
+  color: #081f3f;
+  font-size: 1.1rem;
+}
+
+.sponsor-thanks {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #081f3f;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+
+.sponsor-role {
+  font-weight: 500;
+  color: #133f7d;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+@media (max-width: 600px) {
+  .sponsor-circle {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
 .expanded .officer-text {
   flex: 1;
   align-items: flex-start;
@@ -387,6 +458,43 @@ h1::after {
     <a href="#">View More About Officers ▼</a>
   </div>
 </div>
+
+<div style="height: 30px;"></div>
+<!-- TEACHER SPONSORS SECTION -->
+<h1>Teacher Sponsors</h1>
+
+
+	<p class="sponsor-thanks">
+  Thank you to our teacher sponsors for supporting our chapter!
+</p>
+
+<div class="sponsors-container">
+  <div class="sponsor-card">
+    <div class="sponsor-circle">
+      <img src="placeholder1.png">
+    </div>
+    <div class="sponsor-name">Sarah Lyons</div>
+    <div class="sponsor-role">Teacher Sponsor</div>
+  </div>
+
+  <div class="sponsor-card">
+    <div class="sponsor-circle">
+      <img src="placeholder2.png">
+    </div>
+    <div class="sponsor-name">Claire Rogers</div>
+    <div class="sponsor-role">Teacher Sponsor</div>
+  </div>
+
+  <div class="sponsor-card">
+    <div class="sponsor-circle">
+      <img src="placeholder3.png">
+    </div>
+    <div class="sponsor-name">Keith Gilliam</div>
+    <div class="sponsor-role">Teacher Sponsor</div>
+  </div>
+
+</div>
+
 
 <script>
 const wrapper = document.querySelector('.leaders-wrapper');
@@ -644,5 +752,4 @@ toggleLink.addEventListener('click', (e) => {
 </style>
 </body>
 </html>
-
 
